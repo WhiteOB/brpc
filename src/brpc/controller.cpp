@@ -107,9 +107,9 @@ int PROFILER_LINKER_DUMMY = 0;
 
 static void PrintRevision(std::ostream& os, void*) {
 #if defined(BRPC_REVISION)
-    #os << BRPC_REVISION;
+    // os << BRPC_REVISION;
 #else
-    #os << "undefined";
+    os << "undefined";
 #endif
 }
 static bvar::PassiveStatus<std::string> s_rpc_revision(
