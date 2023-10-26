@@ -73,7 +73,7 @@ static int64_t s_trackme_last_time = 0;
 // within our code.
 // The code running before main() may see g_rpc_version=0, should be OK.
 #if defined(BRPC_REVISION)
-const int64_t g_rpc_version = atoll(BRPC_REVISION);
+// const int64_t g_rpc_version = atoll(BRPC_REVISION);
 #else
 const int64_t g_rpc_version = 0;
 #endif
@@ -157,12 +157,12 @@ static void HandleTrackMeResponse(Controller* cntl, TrackMeResponse* res) {
             case TrackMeOK:
                 break;
             case TrackMeFatal:
-                LOG(ERROR) << "Your brpc (r" << g_rpc_version
-                           << ") is affected by: " << res->error_text();
+                //LOG(ERROR) << "Your brpc (r" << g_rpc_version
+                //           << ") is affected by: " << res->error_text();
                 break;
             case TrackMeWarning:
-                LOG(WARNING) << "Your brpc (r" << g_rpc_version
-                             << ") is affected by: " << res->error_text();
+                //LOG(WARNING) << "Your brpc (r" << g_rpc_version
+                //             << ") is affected by: " << res->error_text();
                 break;
             default:
                 LOG(WARNING) << "Unknown severity=" << res->severity();
@@ -209,7 +209,7 @@ static void TrackMeNow(std::unique_lock<pthread_mutex_t>& mu) {
     mu.unlock();
     TrackMeService_Stub stub(s_trackme_chan);
     TrackMeRequest req;
-    req.set_rpc_version(g_rpc_version);
+    //req.set_rpc_version(g_rpc_version);
     req.set_server_addr(*s_trackme_addr);
     TrackMeResponse* res = new TrackMeResponse;
     Controller* cntl = new Controller;
