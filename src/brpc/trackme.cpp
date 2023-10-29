@@ -73,7 +73,7 @@ static int64_t s_trackme_last_time = 0;
 // within our code.
 // The code running before main() may see g_rpc_version=0, should be OK.
 #if defined(BRPC_REVISION)
-// const int64_t g_rpc_version = atoll(BRPC_REVISION);
+const int64_t g_rpc_version = atoll("1.6");
 #else
 const int64_t g_rpc_version = 0;
 #endif
